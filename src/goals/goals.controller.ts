@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
-import { CreateGoalDto } from './dtos/create-goal-dto/create-goal-dto';
+import { CreateGoalDto, UpdateGoalDto } from './dtos/index';
 
 @Controller('goals')
 export class GoalsController {
@@ -26,7 +26,7 @@ export class GoalsController {
   }
 
   @Patch(":id")
-  update(@Param("id") id, @Body() input) {
+  update(@Param("id") id, @Body() input: UpdateGoalDto) {
     return input
   }
   
