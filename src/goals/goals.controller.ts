@@ -41,12 +41,13 @@ export class GoalsController {
     const goal = {
       id: this.goals.length + 1,
       ...input,
-      createdAt: new Date(input.createdAt),
-      updatedAt: new Date(input.updatedAt),
+      createdAt: new Date(),
+      updatedAt: new Date(),
       
     };
 
     this.goals.push(goal);
+    return goal;
   }
 
   @Patch(":id")
@@ -56,17 +57,19 @@ export class GoalsController {
     this.goals[index] = {
       ...this.goals[index],
       ...input,
-      createdAt: input.createdAt ? new Date(input.createdAt) : this.goals[index].createdAt,
-      updatedAt: input.updatedAt ? new Date(input.updatedAt) : this.goals[index].updatedAt
+      createdAt: this.goals[index].createdAt,
+      updatedAt: new Date()
     };
 
     return this.goals[index];
   }
   
   @Delete(":id")
-  @HttpCode(204)
+  // @HttpCode(204)
   remove(@Param("id") id) {
+    const deleteGoal = this.goals.filter((goal) => goal.id === parseInt(id)).reduce((goal) => goal);
     this.goals = this.goals.filter((goal) => goal.id !== parseInt(id));
+    return deleteGoal;
   }
 
 }
