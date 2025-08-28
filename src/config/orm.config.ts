@@ -8,10 +8,10 @@ export default registerAs(
     type: 'postgres',
     host: 'localhost',
     port: 5432,
-    username: 'postgres',
+    username: 'goaltracker_db',
     password: 'goaltracker_db',
     database: 'goaltracker_db',
     entities: [Goal],
-    synchronize: false
+    synchronize: true
   })
 );
