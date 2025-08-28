@@ -65,7 +65,6 @@ export class GoalsController {
   }
   
   @Delete(":id")
-  // @HttpCode(204)
   remove(@Param("id") id) {
     const deleteGoal = this.goals.filter((goal) => goal.id === parseInt(id)).reduce((goal) => goal);
     this.goals = this.goals.filter((goal) => goal.id !== parseInt(id));
